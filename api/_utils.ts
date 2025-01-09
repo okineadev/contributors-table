@@ -40,15 +40,27 @@ export async function generateContributorsTableImage(params: {
 	ssr?: boolean
 	type?: string
 }) {
+	const {
+		gap = 6,
+		width = 40,
+		columns = 21,
+		roundness = 6,
+		borderWidth = 0,
+		ssr = true,
+		type = 'svg',
+	} = params
 	const adjustedRoundness =
-		typeof params.roundness === 'string' && params.roundness === 'yes'
-			? params.width
-			: params.roundness
+		typeof roundness === 'string' && roundness === 'yes' ? width : roundness
 
-	const rows = Math.ceil(params.contributors.length / params.columns)
+	const rows = Math.ceil(params.contributors.length / columns)
+	// const actualColumns = Math.min(columns, params.contributors.length)
 
-	// Remove gap from total width and height calculations
-	let SVG = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${params.columns * params.width + (params.columns - 1) * params.gap}" height="${rows * params.width + (rows - 1) * params.gap}">`
+	const svgDimensions = {
+		width: columns * width + borderWidth + (columns - 1) * gap,
+		height: rows * width + borderWidth + (rows - 1) * gap,
+	}
+
+	let SVG = `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="${svgDimensions.width}" height="${svgDimensions.height}">`
 
 	const svgStyle = `
 	<style>
@@ -60,9 +72,9 @@ export async function generateContributorsTableImage(params: {
 		}
 		a > svg > rect {
 			stroke: #c0c0c0;
-			stroke-width: ${params.borderWidth ? `${params.borderWidth}px` : 0};
-			width: ${params.width}px;
-			height: ${params.width}px;
+			stroke-width: ${borderWidth ? `${borderWidth}px` : 0};
+			width: ${width}px;
+			height: ${width}px;
 		}
 	</style>
 	`
@@ -71,9 +83,9 @@ export async function generateContributorsTableImage(params: {
 
 	// Parallel avatar loading
 	const avatarPromises = params.contributors.map(async (contributor) => {
-		return params.ssr || params.type === 'png'
-			? await getbase64Image(`${contributor.avatar_url}&s=${params.width}`)
-			: `${contributor.avatar_url}&amp;s=${params.width}`
+		return ssr || type === 'png'
+			? await getbase64Image(`${contributor.avatar_url}&s=${width}`)
+			: `${contributor.avatar_url}&amp;s=${width}`
 	})
 
 	const avatarUrls = await Promise.all(avatarPromises)
@@ -82,15 +94,20 @@ export async function generateContributorsTableImage(params: {
 		const username = contributor.login
 		const avatarUrl = avatarUrls[index]
 
+		const avatarPosition = {
+			x: (index % columns) * (width + gap) + borderWidth / 2,
+			y: Math.floor(index / columns) * (width + gap) + borderWidth / 2,
+		}
+
 		SVG += `
 		<a href="https://github.com/${username}">
-		  <svg x="${(index % params.columns) * (params.width + params.gap) + params.borderWidth}" y="${Math.floor(index / params.columns) * (params.width + params.gap) + params.borderWidth}">
+		  <svg x="${avatarPosition.x}" y="${avatarPosition.y}">
 			<title>${username}</title>
 			<rect rx="${adjustedRoundness}" fill="url(#i${index})"></rect>
 
 			<defs>
-			  <pattern id="i${index}" patternUnits="userSpaceOnUse" width="${params.width}" height="${params.width}">
-				<image href="${avatarUrl}" width="${params.width}" height="${params.width}"></image>
+			  <pattern id="i${index}" patternUnits="userSpaceOnUse" width="${width}" height="${width}">
+				<image href="${avatarUrl}" width="${width}" height="${width}"></image>
 			  </pattern>
 			</defs>
 		  </svg>
@@ -99,7 +116,7 @@ export async function generateContributorsTableImage(params: {
 
 	SVG += '</svg>'
 
-	if (params.type === 'png') {
+	if (type === 'png') {
 		return await generatePNGFromSVG(SVG)
 	}
 
