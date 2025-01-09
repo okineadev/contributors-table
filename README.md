@@ -11,7 +11,7 @@ Basic usage:
 ![Contributors](https://contributors-table.vercel.app/image?repo=OWNER/REPO)
 ```
 
-![Contributors](https://contributors-table.vercel.app/image?repo=torvalds/linux)
+![Contributors](https://contributors-table.vercel.app/image?repo=material-extensions/vscode-material-icon-theme)
 
 ### Parameters
 
@@ -33,7 +33,7 @@ Custom styling:
 ![Contributors](https://contributors-table.vercel.app/image?repo=OWNER/REPO&width=50&gap=10&columns=10&roundness=yes)
 ```
 
-![Contributors](https://contributors-table.vercel.app/image?repo=torvalds/linux&width=50&gap=10&columns=10&roundness=yes)
+![Contributors](https://contributors-table.vercel.app/image?repo=material-extensions/vscode-material-icon-theme&width=50&gap=10&columns=10&roundness=yes)
 
 PNG format with limited contributors:
 
@@ -41,4 +41,4 @@ PNG format with limited contributors:
 ![Contributors](https://contributors-table.vercel.app/image?repo=OWNER/REPO&max=50&type=png)
 ```
 
-![Contributors](https://contributors-table.vercel.app/image?repo=torvalds/linux&max=50&type=png)
+![Contributors](https://contributors-table.vercel.app/image?repo=material-extensions/vscode-material-icon-theme&max=50&type=png)
