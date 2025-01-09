@@ -29,7 +29,7 @@ export default async (
 		columns: columns ? Number(columns) : undefined,
 		roundness: roundness === 'yes' ? Number(width) : Number(roundness) || 6,
 		borderWidth: borderWidth ? Number(borderWidth) : undefined,
-		ssr: ssr === 'true',
+		ssr: ssr !== 'false',
 		// @ts-ignore
 		type: type,
 	})
