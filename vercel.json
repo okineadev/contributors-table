@@ -1,0 +1,22 @@
+{
+	"version": 2,
+	"functions": {
+		"api/index.ts": {
+			"maxDuration": 20
+		}
+	},
+	"rewrites": [{ "source": "/", "destination": "/api/index.ts" }],
+	"installCommand": "bun install",
+	"public": true,
+	"headers": [
+		{
+			"source": "/(.*)",
+			"headers": [
+				{
+					"key": "Cache-Control",
+					"value": "public, max-age=18000, stale-while-revalidate=59"
+				}
+			]
+		}
+	]
+}
