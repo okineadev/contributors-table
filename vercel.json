@@ -1,11 +1,19 @@
 {
+	"$schema": "https://openapi.vercel.sh/vercel.json",
 	"version": 2,
 	"functions": {
 		"api/index.ts": {
 			"maxDuration": 20
 		}
 	},
-	"rewrites": [{ "source": "/", "destination": "/api/index.ts" }],
+	"rewrites": [{ "source": "/image", "destination": "/api/index.ts" }],
+	"redirects": [
+		{
+			"source": "/",
+			"destination": "https://github.com/okineadev/contributors-table#readme",
+			"permanent": true
+		}
+	],
 	"installCommand": "bun install",
 	"public": true,
 	"headers": [

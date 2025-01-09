@@ -6,9 +6,9 @@
 ## Usage
 
 ```markdown
-![Contributors](https://contributors-table.vercel.app/?repo=OWNER/REPO)
+![Contributors](https://contributors-table.vercel.app/image?repo=OWNER/REPO)
 ```
 
-![Contributors](https://contributors-table.vercel.app/?repo=okineadev/contributors-table)
+![Contributors](https://contributors-table.vercel.app/image?repo=okineadev/contributors-table)
 
 <!-- TODO: Write all usage examples -->
