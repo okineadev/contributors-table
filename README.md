@@ -1,7 +1,7 @@
 # contributors-table
 
-> [!CAUTION]
-> ⚠️ VERY UNSTABLE: Don't use in production.
+> [!WARNING]
+> **Unstable**. Breaking changes are possible at the moment, use at your own risk
 
 ## Usage
 

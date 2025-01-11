@@ -1,5 +1,0 @@
-// Bun Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`generateContributorsTableImage should generate SVG with correct dimensions and attributes 1`] = `"<svg xmlns="http://www.w3.org/2000/svg" width="111" height="51"><style><![CDATA[a{cursor:pointer}a>svg{overflow:visible}a>svg>rect{stroke:silver;stroke-width:1px;width:50px;height:50px}]]></style><a href="https://github.com/user1"><svg x=".5" y=".5"><title>user1</title><rect fill="url(#i0)" rx="5"/><defs><pattern id="i0" width="50" height="50" patternUnits="userSpaceOnUse"><image width="50" height="50" href="https://avatars.githubusercontent.com/u/1?v=4&amp;s=50"/></pattern></defs></svg></a><a href="https://github.com/user2"><svg x="60.5" y=".5"><title>user2</title><rect fill="url(#i1)" rx="5"/><defs><pattern id="i1" width="50" height="50" patternUnits="userSpaceOnUse"><image width="50" height="50" href="https://avatars.githubusercontent.com/u/2?v=4&amp;s=50"/></pattern></defs></svg></a></svg>"`;
-
-exports[`generateContributorsTableImage should handle empty contributors array 1`] = `"<svg xmlns="http://www.w3.org/2000/svg" width="111" height="-9"/>"`;

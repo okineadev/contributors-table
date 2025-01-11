@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 
 import { getContributorsListFromGitHub } from './_api.js'
-import { generateContributorsTableImage } from './_utils.js'
+import { generateContributorsTable } from 'contributors-table'
 
 export default async (
 	req: VercelRequest,
@@ -22,8 +22,7 @@ export default async (
 
 	res.setHeader('Content-Type', type === 'png' ? 'image/png' : 'image/svg+xml')
 
-	const image = await generateContributorsTableImage({
-		contributors: contributors,
+	const image = await generateContributorsTable(contributors, {
 		gap: gap ? Number(gap) : undefined,
 		width: width ? Number(width) : undefined,
 		columns: columns ? Number(columns) : undefined,
@@ -35,7 +34,7 @@ export default async (
 	})
 
 	const endTime = performance.now()
-	console.log(`${req.url} Execution time: ${(endTime - startTime) / 1000}s`)
+	console.log(`Execution time: ${(endTime - startTime) / 1000}s`)
 
 	return res.status(200).send(image)
 }
