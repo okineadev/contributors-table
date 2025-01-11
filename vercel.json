@@ -10,7 +10,7 @@
 	"redirects": [
 		{
 			"source": "/",
-			"destination": "https://github.com/okineadev/contributors-table#readme",
+			"destination": "https://github.com/just-serverless/contributors-table#readme",
 			"permanent": true
 		}
 	],
