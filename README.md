@@ -3,6 +3,15 @@
 > [!WARNING]
 > **Unstable**. Breaking changes are possible at the moment, use at your own risk
 
+Powered by [▲ Vercel](https://vercel.com) and [contributors-table](https://www.npmjs.com/package/contributors-table) library 😎.
+
+## Features
+
+- ⚙️ Flexible settings
+- 🎨 Customizable
+- 🚀 Server Side Rendering (SSR) support
+- 🤝 Images supported by Markdown on GitHub and anywhere!
+
 ## Usage
 
 Basic usage:
