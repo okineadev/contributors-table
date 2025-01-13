@@ -1,4 +1,5 @@
 import { Octokit } from '@octokit/core'
+import type { Endpoints } from '@octokit/types'
 import { USER_AGENT } from '../config.js'
 
 /**
@@ -22,7 +23,12 @@ import { USER_AGENT } from '../config.js'
  * ]
  * ```
  */
-export async function getContributorsListFromGitHub(repo: string, max: number) {
+export async function getContributorsListFromGitHub(
+	repo: string,
+	max: number,
+): Promise<
+	Partial<Endpoints['GET /repos/{owner}/{repo}/contributors']['response']>
+> {
 	const octokit = new Octokit({ auth: process.env.GITHUB_APP_TOKEN })
 	const [owner, repoName] = repo.split('/')
 	const allContributors = []

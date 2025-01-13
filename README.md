@@ -1,15 +1,13 @@
 # contributors-table
 
-> [!WARNING]
-> **Unstable**. Breaking changes are possible at the moment, use at your own risk
-
-Powered by [▲ Vercel](https://vercel.com) and [contributors-table](https://www.npmjs.com/package/contributors-table) library 😎.
+> Powered by [▲ Vercel](https://vercel.com) and [contributors-table](https://www.npmjs.com/package/contributors-table) library 😎
 
 ## Features
 
 - ⚙️ Flexible settings
+- 🔗 Hyperlinks to contributors profiles
+- 💡 Hints when hovering over an avatar
 - 🎨 Customizable
-- 🚀 Server Side Rendering (SSR) support
 - 🤝 Images supported by Markdown on GitHub and anywhere!
 
 ## Usage
@@ -30,9 +28,9 @@ Basic usage:
 - `width` (optional, default: 40): Width of each avatar in pixels
 - `columns` (optional, default: 21): Number of columns in the table
 - `roundness` (optional, default: 5): Border radius of avatars (use 'yes' for full circle)
-- `borderWidth` (optional, default: 0): Width of avatar borders
+- `strokeWidth` (optional, default: 0): Width of avatar borders
 - `ssr` (optional, default: true): Enable/disable server-side rendering
-- `type` (optional, default: 'svg'): Output format ('svg' or 'png')
+- `format` (optional, default: 'svg'): Output format ('svg' or 'png')
 
 ### Examples
 
@@ -47,7 +45,7 @@ Custom styling:
 PNG format with limited contributors:
 
 ```markdown
-![Contributors](https://contributors-table.vercel.app/image?repo=OWNER/REPO&max=50&type=png)
+![Contributors](https://contributors-table.vercel.app/image?repo=OWNER/REPO&max=50&format=png)
 ```
 
-![Contributors](https://contributors-table.vercel.app/image?repo=material-extensions/vscode-material-icon-theme&max=50&type=png)
+![Contributors](https://contributors-table.vercel.app/image?repo=material-extensions/vscode-material-icon-theme&max=50&format=png)
