@@ -16,7 +16,7 @@ export default async (
 		roundness,
 		strokeWidth = req.query?.borderWidth,
 		ssr,
-		format = req.query?.type,
+		format = req.query?.type ?? 'svg',
 	} = req.query
 
 	if (!repo) {
