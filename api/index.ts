@@ -23,9 +23,10 @@ export default async (
 		return res.status(400).json({ error: '`repo` parameter is required' })
 	}
 
-	const contributors = (
-		await getContributorsListFromGitHub(repo as string, Number(max))
-	).data
+	const contributors = await getContributorsListFromGitHub(
+		repo as string,
+		Number(max),
+	)
 
 	res.setHeader(
 		'Content-Type',
@@ -39,8 +40,7 @@ export default async (
 		roundness: roundness === 'yes' ? Number(width) : Number(roundness) || 6,
 		strokeWidth: strokeWidth ? Number(strokeWidth) : undefined,
 		ssr: ssr !== 'false',
-		// @ts-ignore
-		format: format,
+		format: format as string,
 	})
 
 	return res.status(200).send(image)
