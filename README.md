@@ -49,3 +49,7 @@ PNG format with limited contributors:
 ```
 
 ![Contributors](https://contributors-table.vercel.app/image?repo=material-extensions/vscode-material-icon-theme&max=50&format=png)
+
+### 👇 Deploy your own instance in one click
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjust-serverless%2Fcontributors-table%2F&env=GITHUB_APP_TOKEN&envDescription=GitHub%20Personal%20Access%20Token%20(PAT)%20from%20https%3A%2F%2Fgithub.com%2Fsettings%2Fpersonal-access-tokens)
