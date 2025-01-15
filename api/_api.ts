@@ -1,5 +1,4 @@
 import { Octokit } from '@octokit/rest'
-import type { Endpoints } from '@octokit/types'
 import { USER_AGENT } from '../config.js'
 import type { Contributor } from './_types.js'
 
@@ -27,7 +26,7 @@ import type { Contributor } from './_types.js'
 export async function getContributorsListFromGitHub(
 	repo: string,
 	max = 100,
-): Promise<Partial<Contributor[]>> {
+): Promise<Contributor[]> {
 	const octokit = new Octokit({
 		auth: process.env.GITHUB_APP_TOKEN,
 		userAgent: USER_AGENT,
@@ -36,26 +35,28 @@ export async function getContributorsListFromGitHub(
 	const allContributors: Contributor[] = []
 	const perPage = 100
 
-	let needToDownload = max
-
 	let downloaded = 0
+	const needToDownload = max
 
 	for await (const { data: contributors } of octokit.paginate.iterator(
 		octokit.repos.listContributors,
 		{
 			owner: owner,
 			repo: repoName,
-			per_page: Math.min(needToDownload, perPage),
+			per_page: Math.min(perPage, needToDownload),
 		},
 	)) {
-		allContributors.push(...contributors)
-		needToDownload -= contributors.length
-		downloaded += contributors.length
-
 		if (downloaded >= needToDownload) {
 			break
 		}
-		console.log(contributors.length)
+
+		// AI generated
+		const remainingToDownload = needToDownload - downloaded
+		const contributorsToAdd = contributors.slice(0, remainingToDownload)
+		// @ts-ignore
+		allContributors.push(...contributorsToAdd)
+
+		downloaded += contributorsToAdd.length
 	}
 
 	console.log(`Downloaded ${downloaded} contributors.`)

@@ -14,6 +14,7 @@ export default async (
 		gap,
 		width,
 		columns,
+		rows,
 		roundness,
 		strokeWidth = req.query?.borderWidth,
 		ssr,
@@ -24,9 +25,16 @@ export default async (
 		return res.status(400).json({ error: '`repo` parameter is required' })
 	}
 
+	// sorry pretty bad code but fell free to refactor
+
+	const columnsNumber = columns ? Number(columns) : 21
+	const rowsNumber = rows ? Number(rows) : 7
+
+	const avatarsCount = columnsNumber * rowsNumber
+
 	const contributorsPromise = getContributorsListFromGitHub(
 		repo as string,
-		Number(max),
+		Math.min(max ? Number(max) : avatarsCount, avatarsCount),
 	)
 
 	waitUntil(contributorsPromise)
@@ -36,11 +44,12 @@ export default async (
 	const imagePromise = generateContributorsTable(contributors, {
 		gap: gap ? Number(gap) : undefined,
 		width: width ? Number(width) : undefined,
-		columns: columns ? Number(columns) : undefined,
+		columns: columnsNumber,
+		rows: rowsNumber,
 		roundness: roundness === 'yes' ? Number(width) : Number(roundness) || 6,
 		strokeWidth: strokeWidth ? Number(strokeWidth) : undefined,
 		ssr: ssr !== 'false',
-		format: format as string,
+		format: format as 'png' | 'svg',
 	})
 
 	waitUntil(imagePromise)
